@@ -33,6 +33,10 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+
+    int primary_color = 1;
+    int max_color = 1;
+
     while (true)
     {
         SDL_Event event;
@@ -43,6 +47,18 @@ int main(int argc, char *argv[])
                 break;
             }
         }
+
+        SDL_SetRenderDrawColor(renderer, primary_color, 0, 0, 255);
+        
+        if (primary_color >= 255 || primary_color <= 0)
+        {
+            max_color = -max_color;
+        }
+
+        primary_color += max_color;
+
+        printf("%i\n", primary_color);
+
 
         SDL_RenderClear(renderer);
         SDL_RenderPresent(renderer);
